@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>ভিডিও জোন</title>
+<style>
+:root{--bg:#f3f5fa;--card:#fff;--tx:#12162a;--mu:#6a7088;--pr:#2a6df4;--pr2:#7b4dff;--ok:#12a150;--wn:#e59b00;--er:#e5484d;--bd:#e2e5f0;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0d1020;--card:#181c32;--tx:#eef0fa;--mu:#9aa1bd;--bd:#2a2f4a;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0d1020;--card:#181c32;--tx:#eef0fa;--mu:#9aa1bd;--bd:#2a2f4a;color-scheme:dark}
+*{box-sizing:border-box}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--tx);font-family:"Hind Siliguri","Noto Sans Bengali",system-ui,sans-serif;max-width:480px;margin-inline:auto;padding-bottom:88px;-webkit-tap-highlight-color:transparent}
+header{padding:16px 16px 22px;background:linear-gradient(135deg,#1d4fd8,var(--pr2));color:#fff;border-radius:0 0 26px 26px}
+.row{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.logo{font-weight:700;font-size:18px}
+.pill{background:rgba(255,255,255,.18);padding:5px 11px;border-radius:20px;font-size:13px}
+.wallet{margin-top:16px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.25);border-radius:18px;padding:14px}
+.wallet small{opacity:.85}
+.bal{font-size:32px;font-weight:700;line-height:1.2}
+.stats{display:flex;gap:10px;margin-top:10px;font-size:13px}
+.stats div{flex:1;background:rgba(255,255,255,.14);border-radius:12px;padding:8px 10px}
+.stats b{display:block;font-size:16px}
+.sec{padding:16px}
+h2{font-size:17px;margin:0 0 12px}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:16px;overflow:hidden;margin-bottom:14px}
+.th{height:128px;display:flex;align-items:center;justify-content:center;font-size:38px;color:#fff;position:relative}
+.dur{position:absolute;right:10px;bottom:10px;background:rgba(0,0,0,.6);font-size:12px;padding:2px 8px;border-radius:8px}
+.cb{padding:12px}
+.mu{color:var(--mu);font-size:13px}
+button{font:inherit;border:0;border-radius:12px;padding:11px 14px;cursor:pointer;background:var(--pr);color:#fff;font-weight:600}
+button.g{background:transparent;color:var(--pr);border:1px solid var(--pr)}
+button.s{padding:7px 12px;font-size:13px}
+.full{width:100%}
+.nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:480px;background:var(--card);border-top:1px solid var(--bd);display:flex;padding-bottom:env(safe-area-inset-bottom,0px)}
+.nav button{flex:1;background:none;color:var(--mu);border-radius:0;padding:10px 4px;font-size:12px}
+.nav button span{display:block;font-size:20px}
+.nav button.on{color:var(--pr)}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}
+.chip{padding:8px 13px;border-radius:20px;border:1px solid var(--bd);background:var(--card);color:var(--tx);font-weight:600;font-size:14px}
+.chip.on{background:var(--pr);border-color:var(--pr);color:#fff}
+.mgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px}
+.m{padding:12px;border-radius:14px;border:2px solid var(--bd);background:var(--card);color:var(--tx);text-align:left}
+.m b{display:block;font-size:15px}
+.m.on{border-color:var(--pr)}
+.dot{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:6px}
+.pay{background:var(--card);border:1px solid var(--bd);border-radius:16px;padding:14px;margin-bottom:14px}
+.num{display:flex;align-items:center;justify-content:space-between;gap:8px;background:var(--bg);border-radius:12px;padding:10px 12px;margin:8px 0;word-break:break-all;font-weight:700}
+.steps{margin:8px 0 0;padding-left:18px;font-size:14px;color:var(--mu);line-height:1.7}
+input{width:100%;font:inherit;padding:12px;border-radius:12px;border:1px solid var(--bd);background:var(--card);color:var(--tx);margin-bottom:10px}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.55);display:none;align-items:flex-end;justify-content:center;z-index:9}
+.modal.show{display:flex}
+.sheet{background:var(--card);width:100%;max-width:480px;border-radius:22px 22px 0 0;padding:18px;padding-bottom:calc(18px + env(safe-area-inset-bottom,0px))}
+.bar{height:8px;background:var(--bd);border-radius:8px;overflow:hidden;margin:12px 0}
+.bar i{display:block;height:100%;background:var(--ok);transition:width .3s}
+.pl{height:170px;border-radius:14px;background:#000;color:#fff;display:flex;align-items:center;justify-content:center;font-size:40px;margin:10px 0}
+.tx{display:flex;gap:12px;align-items:center;background:var(--card);border:1px solid var(--bd);border-radius:14px;padding:12px;margin-bottom:10px}
+.ic{width:40px;height:40px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:19px;background:var(--bg);flex:none}
+.tx .mid{flex:1;min-width:0}
+.tx .mid b{display:block;font-size:14px}
+.amt{text-align:right;font-weight:700;white-space:nowrap}
+.bd{display:inline-block;font-size:11px;padding:2px 8px;border-radius:10px;font-weight:600;margin-top:3px}
+.bd.ok{background:rgba(18,161,80,.15);color:var(--ok)}
+.bd.wn{background:rgba(229,155,0,.18);color:var(--wn)}
+.sum{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:14px}
+.sum div{background:var(--card);border:1px solid var(--bd);border-radius:14px;padding:10px;font-size:12px;color:var(--mu)}
+.sum b{display:block;font-size:15px;color:var(--tx)}
+#toast{position:fixed;left:50%;bottom:100px;transform:translateX(-50%);background:#14182b;color:#fff;padding:9px 16px;border-radius:20px;font-size:14px;display:none;z-index:20}
+.bd.no{background:rgba(229,72,77,.15);color:var(--er)}
+</style>
+</head>
+<body>
+<header>
+  <div class="row"><span class="logo">🎬 ভিডিও জোন</span><span class="pill" id="uname">@demo_user</span></div>
+  <div class="wallet">
+    <small>ওয়ালেট ব্যালেন্স</small>
+    <div class="bal" id="bal">৳ ০</div>
+    <div class="stats"><div>মোট ডিপোজিট<b id="sd">৳ ০</b></div><div>দেখা ভিডিও<b id="sv">০</b></div></div>
+  </div>
+</header>
+<main id="main"></main>
+<nav class="nav">
+  <button data-t="home"><span>🎬</span>ভিডিও</button>
+  <button data-t="dep"><span>💳</span>ডিপোজিট</button>
+  <button data-t="his"><span>📜</span>হিস্টোরি</button>
+  <button data-t="adm" id="admb" style="display:none"><span>🛠</span>অ্যাডমিন</button>
+</nav>
+<div class="modal" id="modal"><div class="sheet" id="sheet"></div></div>
+<div id="toast"></div>
+
+
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
+<script>
+const bn=n=>String(n).replace(/\d/g,d=>'০১২৩৪৫৬৭৮৯'[d]);
+const $=id=>document.getElementById(id);
+const TW=window.Telegram&&Telegram.WebApp;if(TW){TW.ready();TW.expand()}
+const INIT=TW?TW.initData:'';
+const sleep=ms=>new Promise(r=>setTimeout(r,ms));
+async function api(p,b){
+  const r=await fetch(p,{method:b?'POST':'GET',headers:{'x-init':INIT,'content-type':'application/json'},body:b?JSON.stringify(b):undefined});
+  const j=await r.json();if(!r.ok)throw new Error(j.error||'ত্রুটি');return j}
+const S={bal:0,tab:'home',tx:[],videos:[],methods:{},method:'bKash',filter:'all',amt:'',trx:'',admin:false,rate:125,price:5,ads:5,adUrls:[],adSeconds:20,name:''};
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+function toast(m){const t=$('toast');t.textContent=m;t.style.display='block';clearTimeout(toast.h);toast.h=setTimeout(()=>t.style.display='none',2200)}
+function copy(v){try{navigator.clipboard.writeText(v).then(()=>toast('কপি হয়েছে ✓'),()=>toast('কপি করা যায়নি'))}catch(e){toast('কপি করা যায়নি')}}
+const fmt=ts=>new Date(ts).toLocaleString('bn-BD',{day:'numeric',month:'short',hour:'numeric',minute:'2-digit'});
+async function load(){try{Object.assign(S,await api('/api/me'));render()}catch(e){$('main').innerHTML='<div class="sec"><div class="note">'+esc(e.message)+'</div></div>'}}
+
+function render(){
+  const dep=S.tx.filter(t=>t.type==='dep'&&t.st==='ok').reduce((a,t)=>a+t.a,0);
+  $('uname').textContent=S.name;$('bal').textContent='৳ '+bn(S.bal);$('sd').textContent='৳ '+bn(dep);
+  $('sv').textContent=bn(S.tx.filter(t=>t.type==='vid').length);$('admb').style.display=S.admin?'':'none';
+  document.querySelectorAll('.nav button').forEach(b=>b.classList.toggle('on',b.dataset.t===S.tab));
+  if(S.tab==='adm')return admin();
+  $('main').innerHTML=S.tab==='home'?home():S.tab==='dep'?depView():hisView();
+}
+document.querySelector('.nav').addEventListener('click',e=>{const b=e.target.closest('button');if(b){S.tab=b.dataset.t;render();scrollTo(0,0)}});
+
+function home(){
+  return '<div class="sec"><h2>সব ভিডিও</h2>'+(S.videos.length?S.videos.map((v,i)=>
+   '<div class="card"><div class="th" style="background:linear-gradient(135deg,'+esc(v.color)+')">▶<span class="dur">'+esc(v.dur)+'</span></div>'+
+   '<div class="cb"><div class="row"><div><b>'+esc(v.title)+'</b><div class="mu">'+bn(S.ads)+'টি অ্যাড বা ৳ '+bn(S.price)+'</div></div>'+
+   '<button class="s" onclick="watch('+i+')">দেখুন</button></div></div></div>').join(''):'<p class="mu">শীঘ্রই নতুন ভিডিও আসছে।</p>')+'</div>';
+}
+function depView(){
+  const m=S.methods[S.method];if(!m)return'';const cr=S.method==='Binance'||S.method==='Bitcoin',a=+S.amt||0;
+  return '<div class="sec"><h2>ডিপোজিট করুন</h2><div class="mgrid">'+Object.keys(S.methods).map(k=>
+   '<button class="m '+(k===S.method?'on':'')+'" onclick="S.method=\''+k+'\';render()"><b><span class="dot" style="background:'+S.methods[k].color+'"></span>'+k+'</b><span class="mu">সর্বনিম্ন '+(k==='Binance'||k==='Bitcoin'?'$১':'৳ ৫০')+'</span></button>').join('')+'</div>'+
+   '<div class="pay"><b>'+m.label+'</b><div class="mu">'+m.note+'</div>'+
+   '<div class="num"><span><small class="mu">'+m.key+'</small><br>'+m.val+'</span><button class="s" onclick="copy(\''+m.val+'\')">কপি</button></div>'+
+   '<ol class="steps"><li>উপরের '+m.key+'-এ টাকা পাঠান</li><li>নিচে পরিমাণ ও ট্রানজেকশন আইডি দিন</li><li>অ্যাডমিন যাচাই করলে ব্যালেন্সে যোগ হবে</li></ol></div>'+
+   '<div class="chips">'+[50,100,200,500,1000].map(x=>'<button class="chip '+(a===x?'on':'')+'" onclick="S.amt='+x+';render()">৳ '+bn(x)+'</button>').join('')+'</div>'+
+   '<input type="number" inputmode="numeric" value="'+esc(S.amt)+'" oninput="S.amt=this.value" placeholder="পরিমাণ (টাকায়, সর্বনিম্ন '+bn(m.min)+')">'+
+   (cr?'<div class="mu" style="margin:-4px 0 10px">১ ডলার = ৳ '+bn(S.rate)+'</div>':'')+
+   '<input value="'+esc(S.trx)+'" oninput="S.trx=this.value" placeholder="ট্রানজেকশন আইডি (TrxID / TxHash)">'+
+   '<button class="full" onclick="deposit()">ডিপোজিট রিকোয়েস্ট পাঠান</button></div>';
+}
+async function deposit(){
+  try{await api('/api/deposit',{method:S.method,amount:S.amt,trx:S.trx});S.amt='';S.trx='';S.tab='his';S.filter='all';toast('রিকোয়েস্ট জমা হয়েছে');await load()}catch(e){toast(e.message)}
+}
+function hisView(){
+  const list=S.tx.filter(t=>S.filter==='all'||(S.filter==='dep'?t.type==='dep':t.type==='vid'));
+  const inn=S.tx.filter(t=>t.type==='dep'&&t.st==='ok').reduce((a,t)=>a+t.a,0),out=S.tx.filter(t=>t.type==='vid').reduce((a,t)=>a-t.a,0);
+  const lb={ok:'সফল',wn:'পেন্ডিং',no:'বাতিল'};
+  return '<div class="sec"><h2>লেনদেনের হিস্টোরি</h2>'+
+   '<div class="sum"><div>মোট জমা<b>৳ '+bn(inn)+'</b></div><div>মোট খরচ<b>৳ '+bn(out)+'</b></div><div>পেন্ডিং<b>'+bn(S.tx.filter(t=>t.st==='wn').length)+'</b></div></div>'+
+   '<div class="chips">'+[['all','সব'],['dep','ডিপোজিট'],['vid','ভিডিও']].map(f=>'<button class="chip '+(S.filter===f[0]?'on':'')+'" onclick="S.filter=\''+f[0]+'\';render()">'+f[1]+'</button>').join('')+'</div>'+
+   (list.length?list.map(t=>'<div class="tx"><div class="ic">'+(t.type==='dep'?'⬇️':t.type==='adj'?'⚙️':'▶️')+'</div><div class="mid"><b>'+esc(t.n)+'</b><span class="mu">'+fmt(t.ts)+' · '+t.id+'</span><br><span class="bd '+t.st+'">'+lb[t.st]+'</span></div>'+
+    '<div class="amt" style="color:'+(t.a>0&&t.st==='ok'?'var(--ok)':'inherit')+'">'+(t.a>0?'+':t.a<0?'−':'')+'৳ '+bn(Math.abs(t.a))+'</div></div>').join(''):'<p class="mu">এখনও কোনো লেনদেন নেই।</p>')+'</div>';
+}
+function open_(h){$('sheet').innerHTML=h;$('modal').classList.add('show')}
+function close_(){$('modal').classList.remove('show')}
+$('modal').addEventListener('click',e=>{if(e.target.id==='modal')close_()});
+function watch(i){
+  open_('<b>'+esc(S.videos[i].title)+'</b><p class="mu">ভিডিও দেখার উপায় বেছে নিন:</p>'+
+   '<button class="full" onclick="adFlow('+i+')">'+bn(S.ads)+'টি অ্যাড ('+bn(S.adSeconds)+' সেকেন্ড করে) দেখে ফ্রি দেখুন</button><div style="height:10px"></div>'+
+   '<button class="full g" onclick="payFlow('+i+')">৳ '+bn(S.price)+' দিয়ে অ্যাড ছাড়া দেখুন</button>');
+}
+async function adFlow(i){
+  const v=S.videos[i];let r;
+  try{await api('/api/ad/start',{vid:v.id});
+    for(let n=0;n<S.ads;n++){
+      open_('<b>অ্যাড '+bn(n+1)+'/'+bn(S.ads)+'</b><div class="bar"><i style="width:'+(n*100/S.ads)+'%"></i></div><div class="pl" style="font-size:18px;flex-direction:column;gap:6px">অ্যাড চলছে…<span id="cd" style="font-size:32px;font-weight:700">'+bn(S.adSeconds)+'</span><small style="font-size:12px;opacity:.8">শেষ না হওয়া পর্যন্ত অপেক্ষা করুন</small></div>'+
+        (S.adUrls.length?'<button class="full g" onclick="openAd('+n+')">অ্যাডটি খুলুন</button>':''));
+      for(let s=S.adSeconds;s>0;s--){const c=$('cd');if(c)c.textContent=bn(s);await sleep(1000)}
+      r=await api('/api/ad/next',{});
+    }
+    play(r.title,r.url);load();
+  }catch(e){close_();toast(e.message)}
+}
+function openAd(n){const u=S.adUrls[n%S.adUrls.length];TW&&TW.openLink?TW.openLink(u):window.open(u,'_blank')}
+async function payFlow(i){
+  try{const r=await api('/api/pay',{vid:S.videos[i].id});play(r.title,r.url);load()}
+  catch(e){open_('<b>'+esc(e.message)+'</b><p class="mu">অ্যাড ছাড়া দেখতে ৳ '+bn(S.price)+' লাগে।</p><button class="full" onclick="close_();S.tab=\'dep\';render()">ডিপোজিট করুন</button>')}
+}
+function play(t,u){open_('<b>'+esc(t)+'</b><video src="'+esc(u)+'" controls autoplay playsinline style="width:100%;border-radius:14px;background:#000;margin:10px 0"></video><button class="full" onclick="close_()">বন্ধ করুন</button>')}
+
+async function admin(){
+  $('main').innerHTML='<div class="sec"><p class="mu">লোড হচ্ছে…</p></div>';
+  try{const {pending}=await api('/api/admin/pending');
+    $('main').innerHTML='<div class="sec"><h2>পেন্ডিং ডিপোজিট ('+bn(pending.length)+')</h2>'+(pending.length?pending.map(t=>
+     '<div class="pay"><b>'+esc(t.user)+' · ৳ '+bn(t.a)+'</b><div class="mu">'+esc(t.method)+' · TrxID: '+esc(t.ref)+'<br>'+fmt(t.ts)+' · '+t.id+'</div>'+
+     '<div class="row" style="margin-top:10px"><button class="s" onclick="decide(\''+t.id+'\',1)">✅ অনুমোদন</button><button class="s g" onclick="decide(\''+t.id+'\',0)">❌ বাতিল</button></div></div>').join(''):'<p class="mu">কোনো পেন্ডিং নেই।</p>')+
+     '<h2 style="margin-top:22px">নতুন ভিডিও যোগ করুন</h2><input id="vt" placeholder="ভিডিওর নাম"><input id="vd" placeholder="সময় (যেমন ০৫:২০)"><input id="vu" placeholder="ভিডিও লিংক (সরাসরি .mp4 https://...)">'+
+     '<button class="full" onclick="addVideo()">ভিডিও যোগ করুন</button>'+
+     '<h2 style="margin-top:22px">সব ভিডিও</h2>'+S.videos.map(v=>'<div class="tx"><div class="mid"><b>'+esc(v.title)+'</b></div><button class="s g" onclick="delVideo(\''+v.id+'\')">মুছুন</button></div>').join('')+'</div>';
+  }catch(e){$('main').innerHTML='<div class="sec"><div class="note">'+esc(e.message)+'</div></div>'}
+}
+async function decide(id,ok){try{await api('/api/admin/decide',{id,ok});toast('সম্পন্ন');await load()}catch(e){toast(e.message)}}
+async function addVideo(){try{await api('/api/admin/video',{title:$('vt').value,dur:$('vd').value,url:$('vu').value});toast('ভিডিও যোগ হয়েছে');await load()}catch(e){toast(e.message)}}
+async function delVideo(id){if(!confirm('মুছে ফেলবেন?'))return;try{await api('/api/admin/video/delete',{id});await load()}catch(e){toast(e.message)}}
+load();
+</script>
+</body>
+</html>
